@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8" />
+      <title>Задание 6</title>
+<body>
+  <div>В каком фильме прозвучала «Ария московского гостя»?</div><br>
+  <div> <input type="radio" name="guitar" id="choice1"> «Я шагаю по Москве»</div><br>
+  <div> <input type="radio" name="guitar" id="choice2"> «Москва слезам не верит»</div><br>
+  <div> <input type="radio" name="guitar" id="choice3"> «Покровские ворота»  </div><br>
+  <div> <input type="radio" name="guitar" id="choice4"> «Ирония судьбы…»</div><br>
+<button class="ok">Отправить ответ</button><br><br>
+  Всего  - <input value="0" id="resultNum" style="width:30px;" readonly> ответа<br>
+  <input value="0" id="realResult1" style="width:30px;" readonly>% за  «Я шагаю по Москве»
+  <input value="0" id="result1" type="hidden"><br>
+  <input value="0" id="realResult2" style="width:30px;" readonly>% за  «Москва слезам не верит»
+  <input value="0" id="result2" type="hidden"><br>
+  <input value="0" id="realResult3" style="width:30px;" readonly>% за  «Покровские ворота»
+  <input value="0" id="result3" type="hidden"><br>
+  <input value="0" id="realResult4" style="width:30px;" readonly>% за  «Ирония судьбы…»
+  <input value="0" id="result4" type="hidden"><br>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(".ok").click(function(){
+	var totalNum=0;
+		for (var i=1;i<=4;i++){
+			totalNum=totalNum+parseInt($('#result'+i).val());
+		}
+		for (var i=1;i<=4;i++){
+			var radioIsChecked = $('#choice'+i).prop('checked');
+			if (radioIsChecked == true){
+				$('#result'+i).val((parseInt($('#result'+i).val())+1).toString());
+				totalNum++;
+				$('#resultNum').val(totalNum.toString());
+			}
+		}
+		for (var i=1;i<=4;i++){
+			$('#realResult'+i).val(Math.round((parseInt($('#result'+i).val())/totalNum*100)).toString());
+		}
+        });
+</script>
